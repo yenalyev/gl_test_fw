@@ -43,6 +43,25 @@ public class PropertyLoader {
         return null;
     }
 
+    public static <T> String getProperty(String propertyKey, T defaultValue) {
+        if (System.getProperty(propertyKey) != null) {
+            Log.Debug("Found property, " + propertyKey + " as a system property of " + System.getProperty(propertyKey));
+            return System.getProperty(propertyKey);
+        }
+
+
+        for (PropertiesFileConfig config : propertiesFileConfigs) {
+            String property = getValueFromPropertiesFile(config, propertyKey);
+
+            if (property != null) {
+                Log.Debug("Found property, " + propertyKey + " in file: " + config.getFileName() + " with value of " + property);
+                return property;
+            }
+        }
+
+        return defaultValue.toString();
+    }
+
     /**
      * Register additional properties files with the PropertyLoader class
      *

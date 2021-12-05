@@ -51,8 +51,8 @@ public class WebDriverFactory {
             default:
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
                 ChromeOptions options = new ChromeOptions();
-                options.setHeadless(true);
-                options.addArguments("disable-infobars"); // disabling infobars
+                //options.setHeadless(true);
+                options.addArguments("--disable-infobars"); // disabling infobars
                 options.addArguments("--disable-extensions"); // disabling extensions
                 options.addArguments("--disable-gpu"); // applicable to windows os only
                 options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
@@ -67,7 +67,7 @@ public class WebDriverFactory {
         Log.Info("Start remoteVebDriver for - " + browser);
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser);
-        //capabilities.setVersion(PropertyLoader.getProperty(CommonProperties.BROWSER_VERSION));
+        capabilities.setCapability("browserVersion", PropertyLoader.getProperty(CommonProperties.BROWSER_VERSION));
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", false);
         capabilities.setJavascriptEnabled(true);
@@ -76,7 +76,7 @@ public class WebDriverFactory {
         RemoteWebDriver driver = null;
         try {
             driver = new RemoteWebDriver(
-                    URI.create(PropertyLoader.getProperty(CommonProperties.SELENOID_URL)).toURL(),
+                    URI.create(CommonProperties.SELENOID_URL).toURL(),
                     capabilities
             );
             driver.manage().window().setSize(new Dimension(1920, 1080));
