@@ -13,12 +13,12 @@
                }
             }
 
-//            stage('Clean'){
-//             steps{
-//                 echo"===================start cleaning==============================="
-//                 sh 'mvn clean'
-//             }
-//            }
+           stage('Clean'){
+            steps{
+                echo"===================start cleaning==============================="
+                sh 'mvn clean'
+            }
+           }
 
             stage('Test'){
                        steps{
