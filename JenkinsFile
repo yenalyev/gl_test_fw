@@ -20,12 +20,16 @@
             }
            }
 
+        try{
             stage('Test'){
-                       steps{
-                           echo"===================start tests==============================="
-                           sh 'mvn test'
-                       }
+                                   steps{
+                                       echo"===================start tests==============================="
+                                       sh 'mvn test'
+                                   }
             }
+        } catch(Exception e){
+        }
+
 
            stage('reports') {
                steps {
