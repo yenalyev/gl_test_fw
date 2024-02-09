@@ -32,7 +32,7 @@
 
            stage('reports') {
                steps {
-               sh 'mvn allure generate'
+
                script {
                        allure([
                                includeProperties: false,
