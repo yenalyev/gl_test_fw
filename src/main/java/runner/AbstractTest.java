@@ -55,11 +55,11 @@ public class AbstractTest {
         String packageName = this.getClass().getPackage().getName();
         if (packageName.contains(UI_TEST.testPackage)){
             Log.Info("UI Tests after method");
-            if (testContext.getSuite().getParallel().equals("methods")){
-                Log.Info("Check quite driver for method - " + testResult.getMethod().getMethodName());
-                WebDriverManager webDriverPool = new WebDriverManager();
-                webDriverPool.quit();
-            }
+//            if (testContext.getSuite().getParallel().equals("methods")){
+//                Log.Info("Check quite driver for method - " + testResult.getMethod().getMethodName());
+//                WebDriverManager webDriverPool = new WebDriverManager();
+//                webDriverPool.quit();
+//            }
         } else if (packageName.contains(API_TEST.testPackage)){
             System.out.println("API Tests before method");
             System.out.println(packageName);
@@ -72,10 +72,10 @@ public class AbstractTest {
         String packageName = this.getClass().getPackage().getName();
         if (packageName.contains(UI_TEST.testPackage)){
             System.out.println("UI Tests after method");
-            if (testContext.getSuite().getParallel().equals("classes")){
-                WebDriverManager webDriverPool = new WebDriverManager();
-                webDriverPool.quit();
-            }
+//            if (testContext.getSuite().getParallel().equals("classes")){
+//                WebDriverManager webDriverPool = new WebDriverManager();
+//                webDriverPool.quit();
+//            }
         } else if (packageName.contains(API_TEST.testPackage)){
             System.out.println("API Tests before method");
             System.out.println(packageName);
