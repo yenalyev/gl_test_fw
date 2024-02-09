@@ -71,7 +71,7 @@ public class WebDriverFactory {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", false);
         capabilities.setJavascriptEnabled(true);
-        capabilities.setCapability("name", PropertyLoader.getProperty(CommonProperties.PROJECT_NAME));
+        capabilities.setCapability("name", PropertyLoader.getProperty(CommonProperties.PROJECT_NAME, "Test"));
 
         RemoteWebDriver driver = null;
         try {

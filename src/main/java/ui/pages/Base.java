@@ -32,7 +32,7 @@ public class Base {
                     }
                 };
         try {
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
             WebDriverWait wait = new WebDriverWait(driver, seconds);
             wait.until(expectation);
         } catch (Throwable error) {
