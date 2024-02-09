@@ -24,7 +24,7 @@ public class UiTest extends AbstractTest {
     @Description("Check page title")
     @TmsLink("TMS-456")
     public void uiTest(){
-        WebDriver driver = driverManager.getDriver();
+        //WebDriver driver = driverManager.getDriver();
         Log.Debug("Start uiTest with thread id - " + Thread.currentThread().getId());
         //driver.get("https://www.google.com/");
         Base base = new Base(driver);
@@ -36,7 +36,7 @@ public class UiTest extends AbstractTest {
     }
     @Test(groups = "all")
     public void uiTest2(){
-        WebDriver driver = driverManager.getDriver();
+        //WebDriver driver = driverManager.getDriver();
         Log.Info("Start uiTest2 with thread id - " + Thread.currentThread().getId());
 
         Base base = new Base(driver);
@@ -49,7 +49,7 @@ public class UiTest extends AbstractTest {
     }
     @Test(groups = "all")
     public void uiTest3(){
-        WebDriver driver = driverManager.getDriver();
+       // WebDriver driver = driverManager.getDriver();
         Log.Info("Start uiTest3 with thread id - " + Thread.currentThread().getId());
         //driver.get("https://www.facebook.com/");
         Base base = new Base(driver);
@@ -62,7 +62,7 @@ public class UiTest extends AbstractTest {
 
     @Test(groups = "all")
     public void uiTest4(){
-        WebDriver driver = driverManager.getDriver();
+        //WebDriver driver = driverManager.getDriver();
         Log.Info("Start uiTest4 with thread id - " + Thread.currentThread().getId());
         driver.get("https://www.geeksforgeeks.org/");
         Base base = new Base(driver);
@@ -74,7 +74,7 @@ public class UiTest extends AbstractTest {
 
     @Test(groups = "all")
     public void uiTest5(){
-        WebDriver driver = driverManager.getDriver();
+        //WebDriver driver = driverManager.getDriver();
         Log.Info("Start uiTest5 with thread id - " + Thread.currentThread().getId());
         driver.get("https://stackoverflow.com/");
         Base base = new Base(driver);
@@ -86,7 +86,7 @@ public class UiTest extends AbstractTest {
 
     @Test(groups = "all")
     public void uiTest6(){
-        WebDriver driver = driverManager.getDriver();
+        //WebDriver driver = driverManager.getDriver();
         Log.Info("Start uiTest6 with thread id - " + Thread.currentThread().getId());
         driver.get("https://www.foxtrot.com.ua/");
         Base base = new Base(driver);
@@ -97,7 +97,7 @@ public class UiTest extends AbstractTest {
 
     @Test(groups = "all")
     public void uiTest7(){
-        WebDriver driver = driverManager.getDriver();
+        //WebDriver driver = driverManager.getDriver();
         Log.Info("Start uiTest7 with thread id - " + Thread.currentThread().getId());
         driver.get("https://www.swtestacademy.com/");
         Base base = new Base(driver);

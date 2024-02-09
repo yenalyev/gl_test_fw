@@ -20,10 +20,10 @@ public class AbstractTest {
             System.out.println("UI Tests");
             System.out.println(packageName);
 
-//            if (testContext.getSuite().getParallel().equals("classes")){
-//                WebDriverManager webDriverPool = new WebDriverManager();
-//                driver = webDriverPool.getDriver();
-//            }
+            if (testContext.getSuite().getParallel().equals("classes")){
+                WebDriverManager webDriverPool = new WebDriverManager();
+                driver = webDriverPool.getDriver();
+            }
 
         } else if (packageName.contains(API_TEST.testPackage)){
             System.out.println("API Tests");
@@ -39,10 +39,10 @@ public class AbstractTest {
         String packageName = this.getClass().getPackage().getName();
         if (packageName.contains(UI_TEST.testPackage)){
             System.out.println("UI Tests before method");
-//            if (testContext.getSuite().getParallel().equals("methods")){
-//                WebDriverManager webDriverPool = new WebDriverManager();
-//                driver = webDriverPool.getDriver();
-//            }
+            if (testContext.getSuite().getParallel().equals("methods")){
+                WebDriverManager webDriverPool = new WebDriverManager();
+                driver = webDriverPool.getDriver();
+            }
         } else if (packageName.contains(API_TEST.testPackage)){
             System.out.println("API Tests before method");
             System.out.println(packageName);
