@@ -15,7 +15,8 @@
 
            stage('Clean'){
             steps{
-            mvn clean
+                echo"===================start cleaning and packaging==============================="
+                sh 'mvn clean package'
             }
            }
 
