@@ -29,7 +29,7 @@ public class UiTest extends AbstractTest {
         //driver.get("https://www.google.com/");
         Base base = new Base(driver);
         base.getUrl("https://www.google.com/");
-        //base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
+        base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
         String title = driver.getTitle();
         Allure.addAttachment("Screen page", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         Assert.assertEquals(title, "Google");
@@ -41,7 +41,7 @@ public class UiTest extends AbstractTest {
 
         Base base = new Base(driver);
         base.getUrl("https://twitter.com/?lang=en");
-        //base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
+        base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
         String title = driver.getTitle();
         Allure.addAttachment("Screen page", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         Assert.assertEquals(title, "Twitter. It’s what’s happening / Twitter");
@@ -54,7 +54,7 @@ public class UiTest extends AbstractTest {
         //driver.get("https://www.facebook.com/");
         Base base = new Base(driver);
         base.getUrl("https://www.facebook.com/");
-        //base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
+        base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
         String title = driver.getTitle();
         Allure.addAttachment("Screen page", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         Assert.assertEquals(title, "Facebook - Log In or Sign Up");
@@ -66,7 +66,7 @@ public class UiTest extends AbstractTest {
         Log.Info("Start uiTest4 with thread id - " + Thread.currentThread().getId());
         driver.get("https://www.geeksforgeeks.org/");
         Base base = new Base(driver);
-        //base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
+        base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
         String title = driver.getTitle();
         Allure.addAttachment("Screen page", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         Assert.assertFalse(title.isEmpty());
@@ -78,7 +78,7 @@ public class UiTest extends AbstractTest {
         Log.Info("Start uiTest5 with thread id - " + Thread.currentThread().getId());
         driver.get("https://stackoverflow.com/");
         Base base = new Base(driver);
-        //base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
+        base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
         String title = driver.getTitle();
         Allure.addAttachment("Screen page", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         Assert.assertFalse(title.isEmpty());
@@ -90,7 +90,7 @@ public class UiTest extends AbstractTest {
         Log.Info("Start uiTest6 with thread id - " + Thread.currentThread().getId());
         driver.get("https://www.foxtrot.com.ua/");
         Base base = new Base(driver);
-        //base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
+        base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
         String title = driver.getTitle();
         Assert.assertFalse(title.isEmpty());
     }
@@ -101,7 +101,7 @@ public class UiTest extends AbstractTest {
         Log.Info("Start uiTest7 with thread id - " + Thread.currentThread().getId());
         driver.get("https://www.swtestacademy.com/");
         Base base = new Base(driver);
-        //base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
+        base.waitForPageLoad(SELENIUM_DRIVER_WAIT_TIMEOUT);
         String title = driver.getTitle();
         Allure.addAttachment("Screen page", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         Assert.assertFalse(title.isEmpty());
