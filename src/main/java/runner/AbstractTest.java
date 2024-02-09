@@ -1,7 +1,6 @@
 package runner;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
