@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.User;
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
 public class UserHelper {
     private static Logger logger = Logger.getLogger(UserHelper.class.getName());
 
-    @Description("add user {} into service")
+    @Step("add user {} into service")
     public static User addUser(User user){
         RestAssured.defaultParser = Parser.JSON;
         ObjectMapper mapper = new ObjectMapper();

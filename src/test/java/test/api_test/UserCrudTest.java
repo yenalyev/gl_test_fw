@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 @Epic("API tests")
 @Feature("User CRUD operation")
+@Test(singleThreaded = true)
 public class UserCrudTest extends AbstractTest {
 
         private static Logger logger = Logger.getLogger(UserCrudTest.class.getName());
