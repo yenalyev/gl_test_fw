@@ -3,13 +3,17 @@ package test.api_test;
 import api.UserHelper;
 import api.helper.RequestHelper;
 import entity.User;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import runner.AbstractTest;
 
 import java.util.logging.Logger;
 
-
+@Epic("API tests")
+@Feature("User CRUD operation")
 public class UserCrudTest extends AbstractTest {
 
         private static Logger logger = Logger.getLogger(UserCrudTest.class.getName());
@@ -24,6 +28,7 @@ public class UserCrudTest extends AbstractTest {
 
 
         @Test(groups = {"all", "api", "user", "crud_user"}, priority = 1)
+        @Story("Add user with post request")
         public void checkAddUser() {
             logger.info("Start add user test execution");
             userUnderTest = UserHelper.addUser(user);
@@ -32,7 +37,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Add user test passed");
         }
 
-        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2)
+        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2, dependsOnMethods = "checkAddUser")
         public void checkGetUser() {
             logger.info("Start get user test execution");
             User getUser = UserHelper.getUser(userUnderTest.getId());
@@ -41,7 +46,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Get user test passed");
         }
 
-        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2)
+        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2, dependsOnMethods = "checkAddUser")
         public void checkCreateAndUpdateDate() {
             logger.info("Start check user create and update date test execution");
             User getUser = UserHelper.getUser(userUnderTest.getId());
@@ -50,7 +55,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Check user create and update date test passed");
         }
 
-        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 3)
+        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 3, dependsOnMethods = "checkAddUser")
         public void checkUpdateUser() {
             logger.info("Start check update user test execution");
             User forUpdate = UserHelper.getUser(userUnderTest.getId());
@@ -63,7 +68,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Check user update user test passed");
         }
 
-        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 4)
+        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 4, dependsOnMethods = "checkAddUser")
         public void checkDeleteUser() {
             logger.info("Start delete user test execution");
             UserHelper.deleteUser(userUnderTest);
