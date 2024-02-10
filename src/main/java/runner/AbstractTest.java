@@ -17,8 +17,7 @@ public class AbstractTest {
     public void initClass(ITestContext testContext){
         String packageName = this.getClass().getPackage().getName();
         if (packageName.contains(UI_TEST.testPackage)){
-            System.out.println("UI Tests");
-            System.out.println(packageName);
+
 
             if (testContext.getSuite().getParallel().equals("classes")){
                 WebDriverManager webDriverPool = new WebDriverManager();
@@ -26,11 +25,9 @@ public class AbstractTest {
             }
 
         } else if (packageName.contains(API_TEST.testPackage)){
-            System.out.println("API Tests");
-            System.out.println(packageName);
+
         } else {
-            System.out.println("ALL Tests");
-            System.out.println(packageName);
+
         }
     }
 
@@ -44,8 +41,6 @@ public class AbstractTest {
                 driver = webDriverPool.getDriver();
             }
         } else if (packageName.contains(API_TEST.testPackage)){
-            System.out.println("API Tests before method");
-            System.out.println(packageName);
         }
     }
 
@@ -61,8 +56,6 @@ public class AbstractTest {
                 webDriverPool.quit();
             }
         } else if (packageName.contains(API_TEST.testPackage)){
-            System.out.println("API Tests before method");
-            System.out.println(packageName);
         }
     }
 
@@ -71,14 +64,12 @@ public class AbstractTest {
     public void afterClass(ITestContext testContext){
         String packageName = this.getClass().getPackage().getName();
         if (packageName.contains(UI_TEST.testPackage)){
-            System.out.println("UI Tests after method");
             if (testContext.getSuite().getParallel().equals("classes")){
                 WebDriverManager webDriverPool = new WebDriverManager();
                 webDriverPool.quit();
             }
         } else if (packageName.contains(API_TEST.testPackage)){
-            System.out.println("API Tests before method");
-            System.out.println(packageName);
+
         }
     }
 
@@ -87,13 +78,11 @@ public class AbstractTest {
     public void afterSuite(ITestContext testContext){
         String packageName = this.getClass().getPackage().getName();
         if (packageName.contains(UI_TEST.testPackage)){
-            System.out.println("UI Tests after suite");
             WebDriverManager webDriverPool = new WebDriverManager();
             webDriverPool.quitAll();
             WebDriverStorage.deleteAll();
         } else if (packageName.contains(API_TEST.testPackage)){
-            System.out.println("API Tests before method");
-            System.out.println(packageName);
+
         }
     }
 

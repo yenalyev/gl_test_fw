@@ -4,7 +4,6 @@ import api.helper.RequestHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.User;
-import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
 public class UserHelper {
     private static Logger logger = Logger.getLogger(UserHelper.class.getName());
 
-    @Step("add user {} into service")
+    @Step("add user into service")
     public static User addUser(User user){
         RestAssured.defaultParser = Parser.JSON;
         ObjectMapper mapper = new ObjectMapper();
@@ -34,31 +33,28 @@ public class UserHelper {
                 .setEmail(response.jsonPath().getString("data.email"))
                 .setGender(response.jsonPath().getString("data.gender"))
                 .setStatus(response.jsonPath().getString("data.status"))
-                .setCreateDate(response.jsonPath().getString("data.created_at"))
-                .setUpdateDate(response.jsonPath().getString("data.updated_at"))
                 .build();
         logger.info("User " + createdUser.toString() + " was created");
         return createdUser;
     }
 
+    @Step("delete user from service")
     public static void deleteUser(User user){
         RequestHelper.doDeleteRequest("users/" + user.getId());
         logger.info("User with id " + user.getId() + " was deleted");
     }
 
-    public static User getUser(int userId){
+    public static User getUserAuth(int userId){
         RestAssured.defaultParser = Parser.JSON;
-        Response response =  RequestHelper.doGetRequest("users/" + userId);
+        Response response =  RequestHelper.doGetRequestAuth("users/" + userId);
         User createdUser = new User.Builder()
                 .setId(response.jsonPath().getInt("data.id"))
                 .setName(response.jsonPath().getString("data.name"))
                 .setEmail(response.jsonPath().getString("data.email"))
                 .setGender(response.jsonPath().getString("data.gender"))
                 .setStatus(response.jsonPath().getString("data.status"))
-                .setCreateDate(response.jsonPath().getString("data.created_at"))
-                .setUpdateDate(response.jsonPath().getString("data.updated_at"))
                 .build();
-        logger.info("User " + createdUser.toString() + " was created");
+        logger.info("User " + createdUser.toString() + " was retrieved");
         return createdUser;
     }
 
@@ -79,8 +75,6 @@ public class UserHelper {
                 .setEmail(response.jsonPath().getString("data.email"))
                 .setGender(response.jsonPath().getString("data.gender"))
                 .setStatus(response.jsonPath().getString("data.status"))
-                .setCreateDate(response.jsonPath().getString("data.created_at"))
-                .setUpdateDate(response.jsonPath().getString("data.updated_at"))
                 .build();
         logger.info("User " + createdUser.toString() + " was changed");
         return createdUser;

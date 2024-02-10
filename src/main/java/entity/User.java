@@ -6,8 +6,8 @@ public class User {
         private String email;
         private String gender;
         private String status;
-        private String createdAt;
-        private String updateAt;
+//        private String createdAt;
+//        private String updateAt;
 
         public static class Builder {
             private int id = 0;
@@ -15,8 +15,8 @@ public class User {
             private String email = "";
             private String gender = "";
             private String status = "";
-            private String createdAt = "";
-            private String updateAt = "";
+//            private String createdAt = "";
+//            private String updateAt = "";
 
             public Builder setId(int id) {
                 this.id = id;
@@ -43,15 +43,15 @@ public class User {
                 return this;
             }
 
-            public Builder setCreateDate(String date) {
-                this.createdAt = date;
-                return this;
-            }
-
-            public Builder setUpdateDate(String date) {
-                this.updateAt = date;
-                return this;
-            }
+//            public Builder setCreateDate(String date) {
+//                this.createdAt = date;
+//                return this;
+//            }
+//
+//            public Builder setUpdateDate(String date) {
+//                this.updateAt = date;
+//                return this;
+//            }
 
             public entity.User build() {
                 entity.User user = new entity.User();
@@ -60,8 +60,8 @@ public class User {
                 user.email = this.email;
                 user.gender = this.gender;
                 user.status = this.status;
-                user.createdAt = this.createdAt;
-                user.updateAt = this.updateAt;
+//                user.createdAt = this.createdAt;
+//                user.updateAt = this.updateAt;
                 return user;
             }
         }
@@ -77,8 +77,8 @@ public class User {
                     ", email='" + email + '\'' +
                     ", gender='" + gender + '\'' +
                     ", status='" + status + '\'' +
-                    ", createdAt=" + createdAt +
-                    ", updateAt=" + updateAt +
+//                    ", createdAt=" + createdAt +
+//                    ", updateAt=" + updateAt +
                     '}';
         }
 
@@ -102,13 +102,13 @@ public class User {
             return status;
         }
 
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public String getUpdateAt() {
-            return updateAt;
-        }
+//        public String getCreatedAt() {
+//            return createdAt;
+//        }
+//
+//        public String getUpdateAt() {
+//            return updateAt;
+//        }
 
         public void setName(String name) {
             this.name = name;

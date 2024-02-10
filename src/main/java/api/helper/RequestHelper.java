@@ -51,6 +51,27 @@ public class RequestHelper {
         throw new SkipException("");
     }
 
+    public static Response doGetRequestAuth(String endpoint) {
+        Log.Info("go to " + ApplicationConfig.BASE_URL_PATH + endpoint);
+        RestAssured.defaultParser = Parser.JSON;
+        try {
+            Header h1= new Header("Content-type", "application/json");
+            Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
+            List<Header> list = new ArrayList<>();
+            list.add(h1);
+            list.add(h2);
+            Headers headers = new Headers(list);
+            return
+                    RestAssured.
+                            given().
+                            headers(headers).
+                            get(new URL(ApplicationConfig.BASE_URL_PATH + endpoint));
+        } catch (MalformedURLException e){
+            Log.Info("Error was happened while send GET request to " + ApplicationConfig.BASE_URL_PATH + endpoint);
+        }
+        throw new SkipException("");
+    }
+
     public static Response doDeleteRequest(String endpoint) {
         RestAssured.defaultParser = Parser.JSON;
         try {

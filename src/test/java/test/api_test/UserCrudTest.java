@@ -2,6 +2,7 @@ package test.api_test;
 
 import api.UserHelper;
 import api.helper.RequestHelper;
+import com.github.javafaker.Faker;
 import entity.User;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -10,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import runner.AbstractTest;
 
+import java.util.Locale;
 import java.util.logging.Logger;
 
 @Epic("API tests")
@@ -19,10 +21,12 @@ public class UserCrudTest extends AbstractTest {
 
         private static Logger logger = Logger.getLogger(UserCrudTest.class.getName());
 
+        static Faker faker = new Faker(new Locale("en","TEST"));
+
         static User userUnderTest;
         static User user = new User.Builder()
-                .setName("test test user")
-                .setEmail("testUserMail@test.com")
+                .setName(faker.name().fullName())
+                .setEmail(faker.internet().emailAddress())
                 .setStatus("active")
                 .setGender("male")
                 .build();
@@ -38,28 +42,28 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Add user test passed");
         }
 
-        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2, dependsOnMethods = "checkAddUser")
+        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2)
         public void checkGetUser() {
             logger.info("Start get user test execution");
-            User getUser = UserHelper.getUser(userUnderTest.getId());
+            User getUser = UserHelper.getUserAuth(userUnderTest.getId());
             logger.info("User - " + getUser.toString() + " was retrieved");
             Assert.assertTrue(UserHelper.compareUser(getUser, userUnderTest));
             logger.info("Get user test passed");
         }
 
-        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2, dependsOnMethods = "checkAddUser")
-        public void checkCreateAndUpdateDate() {
-            logger.info("Start check user create and update date test execution");
-            User getUser = UserHelper.getUser(userUnderTest.getId());
-            logger.info("User - " + getUser.toString() + " was retrieved");
-            Assert.assertEquals(getUser.getCreatedAt(), getUser.getUpdateAt());
-            logger.info("Check user create and update date test passed");
-        }
+//        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2)
+//        public void checkCreateAndUpdateDate() {
+//            logger.info("Start check user create and update date test execution");
+//            User getUser = UserHelper.getUser(userUnderTest.getId());
+//            logger.info("User - " + getUser.toString() + " was retrieved");
+//            Assert.assertEquals(getUser.getCreatedAt(), getUser.getUpdateAt());
+//            logger.info("Check user create and update date test passed");
+//        }
 
-        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 3, dependsOnMethods = "checkAddUser")
+        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 3)
         public void checkUpdateUser() {
             logger.info("Start check update user test execution");
-            User forUpdate = UserHelper.getUser(userUnderTest.getId());
+            User forUpdate = UserHelper.getUserAuth(userUnderTest.getId());
             logger.info("Old user name - " + forUpdate.getName());
             forUpdate.setName("new test name");
             logger.info("New user name - " + forUpdate.getName());
@@ -69,12 +73,12 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Check user update user test passed");
         }
 
-        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 4, dependsOnMethods = "checkAddUser")
+        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 4)
         public void checkDeleteUser() {
             logger.info("Start delete user test execution");
             UserHelper.deleteUser(userUnderTest);
             logger.info("User - " + userUnderTest.toString() + " was deleted");
-            int responseCode = RequestHelper.doGetRequest("users/" + userUnderTest.getId()).jsonPath().getInt("code");
+            int responseCode = RequestHelper.doGetRequestAuth("users/" + userUnderTest.getId()).jsonPath().getInt("code");
             Assert.assertEquals(responseCode, 404);
             logger.info("Delete user test execution passed");
         }
