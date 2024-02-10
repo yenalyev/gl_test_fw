@@ -1,5 +1,8 @@
 package api.helper;
 
+import api.UserHelper;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -13,16 +16,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class RequestHelper {
-    public static Response doPostRequest(String endpoint, String body) {
+    private static Logger logger = Logger.getLogger(RequestHelper.class.getName());
+
+    public static Response doPostRequest(String endpoint, String body, boolean isAuth) {
         RestAssured.defaultParser = Parser.JSON;
         try {
-            Header h1= new Header("Content-type", "application/json");
-            Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
             List<Header> list = new ArrayList<>();
+            Header h1= new Header("Content-type", "application/json");
             list.add(h1);
-            list.add(h2);
+            if (isAuth){
+                Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
+                list.add(h2);
+            }
             Headers headers = new Headers(list);
             return
                     RestAssured.
@@ -36,30 +45,18 @@ public class RequestHelper {
         throw new SkipException("");
     }
 
-    public static Response doGetRequest(String endpoint) {
-        Log.Info("go to " + ApplicationConfig.BASE_URL_PATH + endpoint);
-        RestAssured.defaultParser = Parser.JSON;
-        try {
-            return
-                    RestAssured.
-                            given().
-                            header(new Header("Content-type", "application/json")).
-                            get(new URL(ApplicationConfig.BASE_URL_PATH + endpoint));
-        } catch (MalformedURLException e){
-            Log.Info("Error was happened while send GET request to " + ApplicationConfig.BASE_URL_PATH + endpoint);
-        }
-        throw new SkipException("");
-    }
 
-    public static Response doGetRequestAuth(String endpoint) {
+    public static Response doGetRequest(String endpoint, boolean isAuth) {
         Log.Info("go to " + ApplicationConfig.BASE_URL_PATH + endpoint);
         RestAssured.defaultParser = Parser.JSON;
         try {
-            Header h1= new Header("Content-type", "application/json");
-            Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
             List<Header> list = new ArrayList<>();
+            Header h1= new Header("Content-type", "application/json");
             list.add(h1);
-            list.add(h2);
+            if (isAuth){
+                Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
+                list.add(h2);
+            }
             Headers headers = new Headers(list);
             return
                     RestAssured.
@@ -72,14 +69,16 @@ public class RequestHelper {
         throw new SkipException("");
     }
 
-    public static Response doDeleteRequest(String endpoint) {
+    public static Response doDeleteRequest(String endpoint, boolean isAuth) {
         RestAssured.defaultParser = Parser.JSON;
         try {
-            Header h1= new Header("Content-type", "application/json");
-            Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
             List<Header> list = new ArrayList<>();
+            Header h1= new Header("Content-type", "application/json");
             list.add(h1);
-            list.add(h2);
+            if (isAuth){
+                Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
+                list.add(h2);
+            }
             Headers headers = new Headers(list);
             return
                     RestAssured.
@@ -92,14 +91,16 @@ public class RequestHelper {
         throw new SkipException("");
     }
 
-    public static Response doPutRequest(String endpoint, String body) {
+    public static Response doPutRequest(String endpoint, String body, boolean isAuth) {
         RestAssured.defaultParser = Parser.JSON;
         try {
-            Header h1= new Header("Content-type", "application/json");
-            Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
             List<Header> list = new ArrayList<>();
+            Header h1= new Header("Content-type", "application/json");
             list.add(h1);
-            list.add(h2);
+            if (isAuth){
+                Header h2 = new Header("Authorization", "Bearer " + ApplicationConfig.ACCESS_TOKEN);
+                list.add(h2);
+            }
             Headers headers = new Headers(list);
             return
                     RestAssured.
@@ -112,4 +113,17 @@ public class RequestHelper {
         }
         throw new SkipException("");
     }
-}
+
+    public static <T> String createJsonFromObject(T t){
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = "";
+        try {
+            jsonString = mapper.writeValueAsString(t);
+        } catch (JsonProcessingException e) {
+            logger.log(Level.WARNING, "Error was happened while transforming object " + t.toString() + " into JSON");
+            logger.log(Level.WARNING, e.getMessage());
+        }
+        return jsonString;
+    }
+
+ }
