@@ -23,7 +23,7 @@ public class UserCrudTest extends AbstractTest {
                 .build();
 
 
-        @Test(groups = {"api", "user", "crud_user"}, priority = 1)
+        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 1)
         public void checkAddUser() {
             logger.info("Start add user test execution");
             userUnderTest = UserHelper.addUser(user);
@@ -32,7 +32,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Add user test passed");
         }
 
-        @Test(groups = {"api","user", "crud_user"}, priority = 2)
+        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2)
         public void checkGetUser() {
             logger.info("Start get user test execution");
             User getUser = UserHelper.getUser(userUnderTest.getId());
@@ -41,7 +41,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Get user test passed");
         }
 
-        @Test(groups = {"api","user", "crud_user"}, priority = 2)
+        @Test(groups = {"all", "api","user", "crud_user"}, priority = 2)
         public void checkCreateAndUpdateDate() {
             logger.info("Start check user create and update date test execution");
             User getUser = UserHelper.getUser(userUnderTest.getId());
@@ -50,7 +50,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Check user create and update date test passed");
         }
 
-        @Test(groups = {"api", "user", "crud_user"}, priority = 3)
+        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 3)
         public void checkUpdateUser() {
             logger.info("Start check update user test execution");
             User forUpdate = UserHelper.getUser(userUnderTest.getId());
@@ -63,7 +63,7 @@ public class UserCrudTest extends AbstractTest {
             logger.info("Check user update user test passed");
         }
 
-        @Test(groups = {"api", "user", "crud_user"}, priority = 4)
+        @Test(groups = {"all", "api", "user", "crud_user"}, priority = 4)
         public void checkDeleteUser() {
             logger.info("Start delete user test execution");
             UserHelper.deleteUser(userUnderTest);
