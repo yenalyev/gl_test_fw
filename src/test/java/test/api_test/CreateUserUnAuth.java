@@ -60,8 +60,21 @@ public class CreateUserUnAuth {
         userUnderTest = UserHelper.addUser(user);
         Assert.assertTrue(UserHelper.compareUser(userUnderTest, user));
         logger.info("Get user while UnAuth");
-        Response response =  RequestHelper.doPostRequest(USERS_ENDPOINT, createJsonFromObject(user), false);
-        assertEquals(response.getBody().jsonPath().getString("code"), "401");
+        Response response =  RequestHelper.doGetRequest(USERS_ENDPOINT + "/" + userUnderTest.getId(), false);
+        assertEquals(response.getBody().jsonPath().getString("code"), "404");
+
+    }
+
+    @Test(groups = {"all", "api", "user", "crud_user"}, priority = 3)
+    @Story("Unable create new user while unauthorized")
+    public void checkDeleteUser_UnAuth() {
+        User u = UserHelper.getUser(userUnderTest.getId());
+        Assert.assertNotNull(u);
+        logger.info("Get user while UnAuth");
+        Response response =  RequestHelper.doDeleteRequest(USERS_ENDPOINT + "/" + userUnderTest.getId(), false);
+        assertEquals(response.getBody().jsonPath().getString("code"), "404");
+        User u2 = UserHelper.getUser(userUnderTest.getId());
+        Assert.assertNotNull(u2);
 
     }
 
