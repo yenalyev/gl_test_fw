@@ -3,6 +3,7 @@ package api.helper;
 import api.UserHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.Header;
 import io.restassured.http.Headers;
@@ -22,6 +23,7 @@ import java.util.logging.Logger;
 public class RequestHelper {
     private static Logger logger = Logger.getLogger(RequestHelper.class.getName());
 
+    @Step("Do post request")
     public static Response doPostRequest(String endpoint, String body, boolean isAuth) {
         RestAssured.defaultParser = Parser.JSON;
         try {

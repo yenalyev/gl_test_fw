@@ -1,0 +1,10 @@
+{
+  "code": 422,
+  "meta": null,
+  "data": [
+    {
+      "field": "email",
+      "message": "has already been taken"
+    }
+  ]
+}
